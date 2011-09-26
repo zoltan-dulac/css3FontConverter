@@ -249,6 +249,7 @@ do
 	echo "
 @font-face {
 	font-family: '$FONTNAME';
+	src: url('$i.eot'); /* IE9 in IE7/IE8 compatability mode */ 
 	src: url('$i.eot?') format('eot'), 
 	    $EXTRA_FONT_INFO url('$i.woff') format('woff'), 
 	     url('$i.ttf')  format('truetype'),
