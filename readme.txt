@@ -35,6 +35,11 @@ packages are at:
 
 http://www.useragentman.com/blog/2011/02/20/converting-font-face-fonts-quickly-in-any-os/
 
+LICENSE:
+--------
+
+This code is released under the LGPL.  License can be found at http://www.gnu.org/licenses/lgpl.html
+
 CONTACT:
 --------
 
