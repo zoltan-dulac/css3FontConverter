@@ -57,7 +57,7 @@ toSVG() {
 	then 
 	
 		java -jar "$BATIK_DIR/batik-ttf2svg.jar"  \
-			$1 -l 32 -h 127 -o $i.tmp -id $2 2> /dev/null
+			$1 -autorange -o $i.tmp -id $2 2> /dev/null
 
 		cat $i.tmp | grep -v "<hkern" > $2.svg
 
@@ -75,7 +75,8 @@ getFontName () {
 	then
 		$FONTFORGE -script `cygpath -w $SCRIPT_DIR/getFontName.pe` \
 			`cygpath $1` 2> /dev/null | tr ' ' '_'  |
-			sed "s///g" 
+			sed "s/
+//g" 
 	else
 		fontforge -script $SCRIPT_DIR/getFontName.pe $1 2> /dev/null | tr ' ' '_' 
 	fi
