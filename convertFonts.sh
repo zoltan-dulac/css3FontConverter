@@ -80,7 +80,8 @@ fi
 #   of them isn't, bail, since we don't want the output to be something 
 #   unexpected and BAD.
 
-if [ "$ARGS" = "" -a "$CLEANUP" = "" ]
+
+if [ "$ARGS" = "" -a "$CLEANUP" = "" -a "$SHOW_HELP" = "" ]
 then
 	echo "No arguments.  Bailing"
 	exit 30
@@ -132,6 +133,7 @@ Usage: $0 [-options] [fontfilelist]
 
 Where: - [fontfilelist] is a space separated list of True Type (.ttf) or
          Open Type (.otf) fonts.
+         
        - [-options] are one of the following:
        
          --use-font-weight: This option will merge all font-weights and 
@@ -148,17 +150,23 @@ Where: - [fontfilelist] is a space separated list of True Type (.ttf) or
          
          --autohint: This option will hint/re-hint fonts (using ttfautohint
          by default, or Adobe Font Development Kit for OpenType if using
-         --autohint=adobe). Note that this option will create a bunch of files 
-         prefixed with 'hinted-'.  Attempting to use this option on files 
-         already prefixed with 'hinted-' will result in an error.
+         the --autohint=adobe option ). Note that this option will create
+         a bunch of files prefixed with 'hinted-'.  Attempting to use this 
+         option on files already prefixed with 'hinted-' will result in an 
+         error.
 
-	 --use-font-prefix=xxx: This option will prepend the name of all the
-	 fonts with the string "xxx".  This is useful when you are generating
-	 different stylesheets using the converter with the same font 
-	 but with different options.
-
-	 --output=xxx: This option will produce the resultant @font-face
-	 stylesheet to the file xxx. By default, xxx is set to stylesheet.css
+      	 --use-font-prefix=xxx: This option will prepend the name of all the
+      	 fonts with the string "xxx".  This is useful when you are generating
+      	 different stylesheets using the converter with the same font 
+      	 but with different options.
+      
+      	 --output=xxx: This option will produce the resultant @font-face
+         stylesheet to the file xxx. By default, xxx is set to stylesheet.css
+         
+         --show-features: Presents the user with a list of OpenType feature 
+         tags a font supports which can be used inside a style sheet using 
+         the CSS3 font-feature-settings property. The font can be in either 
+         be OpenType or TrueType.
          
          --help: This help menu.
          
@@ -167,7 +175,6 @@ This script uses the following programs to do the heavy listing.
   - EOTFAST:     http://eotfast.com/
   - ttf2eot:     http://code.google.com/p/ttf2eot/)
   - sfnt2woff:   http://people.mozilla.com/~jkew/woff/
-  - Batik:       http://xmlgraphics.apache.org/batik/download.cgi
   - ttfautohint: http://www.freetype.org/ttfautohint/
   
 This script can run on any version of UNIX with running bash, and is
