@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+    Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>HTML</title>
+    <meta name="description" content="A test of the CSS3 Font Converter using font-weight and font-style in the @font-face declaration." />
+    <meta name="author" content="Zoltan Hawryluk" />
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+    <link rel="stylesheet" href="fonts/graublau-web/unweighted-stylesheet.css" />
+    
+    <link rel="stylesheet" href="css/graublau-style.css" />
+    
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/toggleFont.js"></script>
+  </head>
+
+  <!-- variation of http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+
+  <!--[if lt IE 7 ]> <body class="ie6 ie8down ie9down custom oldIE"> <![endif]-->
+  <!--[if IE 7 ]>    <body class="ie7 ie8down ie9down custom oldIE"> <![endif]-->
+  <!--[if IE 8 ]>    <body class="ie8 ie8down ie9down custom oldIE"> <![endif]-->
+  <!--[if IE 9 ]>    <body class="ie9 ie9down custom oldIE"> <![endif]-->
+  <!--[if (gt IE 9) ]><body class="modern custom"> <![endif]-->
+  <!--[!(IE)]><!--> <body class="notIE modern custom"> <!--<![endif]-->
+    
+    <p>This is the regualar variant of Graublau Web as it is meant to be seen.</p>
+    
+    <p><strong>This is the bolded variant of Graublau Web as it is meant to be seen.</strong></p>
+    
+    <strong class="faux-bold">This is the regular variant of Graublau Web.  It is "faux-bolded" with varying degrees of ugliness in the browser eco-system.</strong></p>
+    
+    <strong class="double-faux-bold">If you declare a font using @font-face without a weight that is already bolded and bold it again, this looks <em>really</em> thick.</strong></p>
+  
+  	<p class="mgrk">These are greek letters with <code>mgrk</code> on:  <span class="mgrk">&#x03A3;e<sup>iπ</sup> = 1. </span></p>
+  	<p class="mgrk">These are greek letters with <code>mgrk</code> on <span>&#x03A3;e<sup>iπ</sup> = 1. </span></p>
+  </body>
+</html>

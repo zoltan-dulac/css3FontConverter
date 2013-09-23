@@ -1,0 +1,16 @@
+body {
+  font-family: "Edmondsans", "Arial", sans-serif;
+  
+}
+
+body.showHinted {
+  font-family: "hinted-Edmondsans", "Arial", sans-serif;
+}
+
+body.showFontsquirrel {
+	font-family: "edmondsans-sq", "Arial", sans-serif;
+}
+
+h1 {
+  font-weight: 700;
+}

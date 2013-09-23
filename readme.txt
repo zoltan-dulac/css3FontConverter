@@ -40,6 +40,13 @@ LICENSE:
 
 This code is released under the LGPL.  License can be found at http://www.gnu.org/licenses/lgpl.html
 
+CHANGELOG:
+----------
+
+Feb 20, 2011 - Initial Release
+Sep 22, 2013 - Added support for font-weight and autohinting, as well as
+               reporting what font-feature-support tags (i.e. OpenType feature
+               tags) are implemented by a font.
 CONTACT:
 --------
 

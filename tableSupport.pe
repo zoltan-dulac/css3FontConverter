@@ -1,0 +1,6 @@
+Open($1);
+gpos = GetLookups("gpos");
+gsub = GetLookups("gsub");
+
+Print(gpos);
+Print(gsub);

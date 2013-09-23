@@ -1,0 +1,107 @@
+body {
+  font-family: "unhinted-Exo", "Arial", sans-serif;
+  text-rendering: optimizeLegibility; /* turns on ligatures in Webkit */
+  -moz-font-feature-settings:"liga","dlig";
+  -ms-font-feature-settings:"liga","dlig";
+  -o-font-feature-settings:"liga","dlig";
+  -webkit-font-feature-settings:"liga","dlig";
+  font-feature-settings:"liga","dlig";
+  
+ 
+}
+
+body.showHinted {
+  font-family: "hinted-Exo", "Arial", sans-serif;
+}
+
+h1 {
+  
+  font-weight: 900;
+}
+
+h1, h2 {
+  line-height: 1.2;
+}
+
+p {
+  
+  font-weight: 500;
+  
+}
+
+p.cut-off {
+  
+}
+
+strong {
+  font-weight: 700;
+  
+}
+
+strong strong {
+  font-weight: 900;
+  
+}
+
+
+th, td {
+  font-size: 25px;
+}
+
+td {
+  text-align: left;
+  padding-left: 10px;
+  
+}
+
+th {
+	font-weight: inherit;
+	text-align: right;
+	font-style: italic;
+}
+
+#figure1 {
+  font-size: 70px;
+}
+
+.big {
+	font-size: 50px;
+}
+
+
+.w100 {
+	font-weight: 100;
+}
+
+.w200 {
+	font-weight: 200;
+}
+
+.w300 {
+	font-weight: 300;
+}
+
+.w400 {
+	font-weight: 400;
+}
+
+.w500 {
+	font-weight: 500;
+}
+
+.w600 {
+	font-weight: 600;
+}
+
+.w700 {
+	font-weight: 700;
+}
+
+.w800 {
+	font-weight: 800;
+}
+
+.w900 {
+	font-weight: 900;
+}
+

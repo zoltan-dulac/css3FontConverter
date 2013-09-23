@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+}
+
+#main {
+  margin: 0 10px 0 240px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: normal;
+  
+  text-transform: capitalize;
+  margin-top: 2em;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+#exampleBlurb {
+  
+}
+
+
+p {
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+.big {
+	font-size: 60px;
+}
+
+.figure, .caption {
+  width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+#figure1 {
+  font-size: 70px;
+  
+
+}
+
+.figure {
+  border: solid 1px #666666;
+}
+
+#figure2 {
+  width: 100px;
+  padding: 10px 220px;
+}
+
+#figure3 {
+  text-align: center;
+}
+
+.caption {
+  font-size: 13px;
+}
+
+header {
+  font-family: "Helvetica", "Arial", sans-serif;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  white-space: normal;
+  padding: 10px;
+  background: white;
+}
+
+header label {
+  padding-right: 2em;
+  white-space: nowrap;
+}
+
+header label select {
+  margin-bottom: 1em;
+}
+
+.features {
+	
+	background: white;
+  height: 20em;
+  
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 200px;
+  font-size: 10px;
+  display: block;
+  margin-top: 10px;
+  
+}
+
+
+
+label {
+	cursor: pointer;
+	display: block;
+}
+
+
+label:hover {
+  color: #0000ff;
+}
+
+fieldset {
+  width: 160px;
+}
+
+header fieldset label {
+  padding-right: 0;
+}
+
+.sc-css {
+	font-variant:small-caps;
+}
+
+.sc-opentype {
+	-moz-font-feature-settings: "smcp" 1;
+  -ms-font-feature-settings: "smcp" 1;
+  -o-font-feature-settings: "smcp" 1;
+  -webkit-font-feature-settings: "smcp" 1;
+  font-feature-settings: "smcp" 1;
+}

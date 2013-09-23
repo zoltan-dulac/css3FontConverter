@@ -1,0 +1,78 @@
+
+
+body {
+  font-family: "unhinted-EBGaramond08", "Times New Roman", serif;
+  text-rendering: optimizeLegibility; /* turns on ligatures in Webkit */
+  
+  font-size: 1em;
+ 
+}
+
+body.showHinted {
+  font-family: "hinted-EBGaramond08", "Times New Roman", serif;
+}
+
+body.showSquirrel {
+  font-family: "eb_garamond", "Times New Roman", serif;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: normal;
+  font-style: italic;
+  font-family: "unhinted-EBGaramond12", "Time New Roman", serif;
+  text-transform: capitalize;
+  margin-top: 2em;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1:before {
+	content: "☞";
+}
+
+h1:after {
+	content: "☜";
+}
+
+
+h2, strong, .biggeer {
+	font-weight: normal !important;
+	font-style: italic !important;
+}
+
+
+body.showHinted h1 {
+  font-family: "hinted-EBGaramond12", "Times New Roman", serif;
+}
+
+
+body.showAdobeHinted h1 {
+  font-family: "adobe-hinted-EBGaramond12", "Times New Roman", serif;
+}
+
+
+
+#main p {
+  font-size: 20px;
+  padding-bottom: 2px;
+}
+
+dl {
+	display: block;
+	width: 300px;
+	margin: 0 auto;
+	border: solid 1px black;
+}
+
+dd {
+	margin-bottom: 1.2em;
+}
+
+
+#figure1 {
+  font-size: 70px;
+}
+

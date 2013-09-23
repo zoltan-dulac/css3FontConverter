@@ -1,0 +1,24 @@
+This font contains ligatures. 
+In many programs ligatures are automatically turned on.
+
+If the ligatures aren't working, please use Google to 
+find out if your software supports ligatures, and
+how to switch it on. 
+
+
+
+Turn on ligatures in Word:
+
+1. On the View menu, click Publishing Layout.
+If you see a message that asks if you want 
+to create a new document in Publishing Layout 
+view, click Continue.
+
+2. On the View menu, click Formatting Palette.
+
+3. On the Formatting Palette, under Font, select 
+or clear the Ligatures check box.
+
+http://mac2.microsoft.com/help/office/12/en-us/word/item/bb7b56a7-5237-40ec-89a8-6cd103e5cd1d
+
+

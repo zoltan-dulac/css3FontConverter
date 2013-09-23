@@ -1,0 +1,36 @@
+body {
+  font-family: "unhinted-LobsterTwo", "Arial", sans-serif;
+  text-rendering: optimizeLegibility; /* turns on ligatures in Webkit */
+  -moz-font-feature-settings:"liga","dlig";
+  -ms-font-feature-settings:"liga","dlig";
+  -o-font-feature-settings:"liga","dlig";
+  -webkit-font-feature-settings:"liga","dlig";
+  font-feature-settings:"liga","dlig";
+  }
+
+body.showHinted {
+  font-family: "hinted-LobsterTwo", "Arial", sans-serif;
+}
+
+body.showFontsquirrel {
+  font-family: "hinted-LobsterTwo", "Arial", sans-serif;
+}
+
+body.showGoogle {
+  font-family: "Lobster Two", "Arial", sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  
+}
+
+p {
+  font-size: 15px;
+}
+
+#figure1 {
+  font-size: 70px;
+}
+
+

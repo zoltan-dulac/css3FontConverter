@@ -1,0 +1,23 @@
+body {
+  font-family: "GraublauWeb", "Impact", sans-serif;
+  font-size: 40px;
+}
+
+strong {
+  font-family: "GraublauWeb", "Impact", sans-serif;
+  font-weight: bold;
+}
+
+.hinted {
+	font-family: "hinted-GraublauWeb", "Impact", sans-serif;
+  font-weight: normal;
+}
+
+.hinted strong{
+	font-family: "hinted-GraublauWeb", "Impact", sans-serif;
+  font-weight: bold;
+}
+
+small {
+	font-size: 12px;
+}

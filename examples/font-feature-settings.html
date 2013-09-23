@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+    Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>HTML</title>
+    <meta name="description" content="A test of the CSS3 Font Converter using font-weight and font-style in the @font-face declaration." />
+    <meta name="author" content="Zoltan Hawryluk" />
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    <link rel="stylesheet" href="http://www.useragentman.com/shared/css/useragentmanExample.css" />
+    <link id="unhinted-css" rel="stylesheet" href="fonts/libre-baskerville/weighted-stylesheet.css" data-url-template="fonts/%s/weighted-stylesheet.css"/>
+    <link id="hinted-css" rel="stylesheet" href="fonts/libre-baskerville/hinted-stylesheet.css" data-url-template="fonts/%s/hinted-stylesheet.css"/>
+    <link id="fontsquirrel-css" rel="stylesheet" href="fonts/libre-baskerville-fontsquirrel/stylesheet.css" data-url-template="fonts/%s-fontsquirrel/stylesheet.css" />
+    <link id="google-css"
+    href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext'
+    rel='stylesheet' type='text/css'
+    data-url-template='http://fonts.googleapis.com/css?family=%s:400,400italic,700&subset=latin,latin-ext' >
+
+    <link id="global-css" rel="stylesheet" href="css/font-feature-set.css"/>
+    <link id="layout-css" rel="stylesheet" href="css/libre-baskerville-style.css" data-url-template="css/%s-style.css" />
+
+    <!--[if lt IE 9 ]>
+    <script src="js/html5.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/toggleFont.js"></script>
+  </head>
+
+  <!-- variation of http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+
+  <!--[if lt IE 7 ]> <body class="ie6 ie8down ie9down custom oldIE"> <![endif]-->
+  <!--[if IE 7 ]>    <body class="ie7 ie8down ie9down custom oldIE"> <![endif]-->
+  <!--[if IE 8 ]>    <body class="ie8 ie8down ie9down custom oldIE"> <![endif]-->
+  <!--[if IE 9 ]>    <body class="ie9 ie9down custom oldIE"> <![endif]-->
+  <!--[if (gt IE 9) ]><body class="modern custom"> <![endif]-->
+  <!--[!(IE)]><!-->
+  <body class="notIE modern custom">
+    <!--<![endif]-->
+    <div id="exampleBlurb">
+    <p>
+      This is a demonstation to show how fonts look with and without hinting and font-feature-settings.  
+      If font looks blurry, choppy, blocky or incomplete in Windows, choose another hinting method.
+      Font-feature settings only work correctly in Firefox 15+, Chrome 21+, Safari 7+, Opera 15+ and IE 10+.      
+      <a href="http://www.useragentman.com/blog/?p=6211">Back to User Agent Man article</a>
+    </p>
+    </div>
+    <header>
+      <form>
+
+        <label for="font-select"> Font:
+          <select id="font-select">
+            <option value="libre-baskerville|http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext|kern,liga,frac,sups">Libre Baskerville</option>
+            <option value="eb-garamond|http://fonts.googleapis.com/css?family=EB+Garamond&subset=latin,latin-ext,cyrillic-ext,vietnamese,cyrillic|c2sc,calt,case,ccmp,cv01,cv02,cv03,cv06,dlig,frac,hlig,liga,lnum,locl,mark,mkmk,onum,ordn,pnum,sinf,smcp,ss01,ss02,ss05,ss20,subs,sups,swsh,tnum">EB Garamond</option>
+            <option value="exo|http://fonts.googleapis.com/css?family=Exo:400,100,100italic,200,200italic,300,300italic,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic|c2sc,case,dlig,dnom,frac,kern,liga,lnum,numr,onum,ordn,salt,sinf,smcp,sups,tnum,zero">Exo</option>
+            <option value="edmond-sans||kern,liga,onum,salt,smcp">Edmond Sans</option>
+            <!-- <option value="valentina||aalt,cpsp,dlig,frac,kern,liga,sups">Valentina</option> -->
+            <option value="calendas-plus||aalt,case,dlig,dnom,frac,kern,liga,lnum,numr,onum,ordn,ornm,salt,sinf,smcp,sups,swsh">Calendas Plus</option>
+            <option value="lobster|http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic|aalt,kern,liga,salt">Lobster</option>
+            <option value="bergamo-std||aalt,case,cpsp,dnom,frac,hist,kern,liga,numr,ordn,sups,zero">Bergamo Std</option>
+            <option value="megalopolis||aalt,case,dlig,dnom,fina,frac,kern,liga,lnum,locl,numr,onum,ordn,ornm,pnum,salt,sinf,ss01,ss02,ss03,ss04,ss05,ss06,sups,tnum">Megalopolis</option>
+            <option value="roboto-slab|http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,cyrillic-ext,greek-ext,greek,cyrillic,latin-ext,vietnamese|kern,liga,lnum,smcp,ss01,ss02,ss03,ss04">Roboto Slab</option>
+            <option value="characteristic||liga">Characteristic</option>
+          </select> </label>
+
+        <label for="toggleFont"> Hinting:
+          <select id="toggleFont">
+            <option value="show-unhinted" selected="selected">Original</option>
+            <option value="show-hinted">ttfautohint</option>
+            <option value="show-fontsquirrel">Font Squirrel</option>
+            <option value="show-google">Google Fonts</option>
+          </select> </label>
+
+        <!-- Font-smoothing:
+        <select id="fontSmoothing">
+        <option value="antialiased">antialiased</option>
+        <option value="subpixel-antialiased">subpixel-antialiased</option>
+        <option value="none">none</option>
+        </select> -->
+
+        <label for="copy-to-show">Copy:
+          <select id="copy-to-show">
+            <option value="alpha">Words</option>
+            <option value="numeric">Numbers</option>
+          </select> </label>
+
+        <label for="font-feature-settings"> Font Feature Settings: <!--[if lte IE 9 ]><br /> not implemented in IE &lt;10<![endif]--> <!--[if !(IE)]><!-->
+          <div class="features" >
+            <fieldset>
+              <legend>
+                Ligatures
+              </legend>
+
+              <label for="liga">
+                <input type="checkbox" id="liga" />
+                liga  Standard Ligatures</label>
+              <label for="dlig">
+                <input type="checkbox" id="dlig" />
+                dlig  Discretionary Ligatures</label>
+              <label for="clig">
+                <input type="checkbox" id="clig" />
+                clig  Contextual Ligatures</label>
+              <label for="hlig">
+                <input type="checkbox" id="hlig" />
+                hlig  Historical Ligatures</label>
+              <label for="rlig">
+                <input type="checkbox" id="rlig" />
+                rlig  Required Ligatures</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                Alternates
+              </legend>
+              <label for="smcp">
+                <input type="checkbox" id="smcp" />
+                smcp  Small capitals</label>
+              <label for="swsh">
+                <input type="checkbox" id="swsh" />
+                swsh  Swashes</label>
+              <label for="calt">
+                <input type="checkbox" id="calt" />
+                calt  Contextual Alternates</label>
+              <label for="salt">
+                <input type="checkbox" id="salt" />
+                salt  Stylistic alternatives</label>
+              <label for="aalt">
+                <input type="checkbox" id="aalt" />
+                aalt  Access All Alternates</label>
+              <label for="ss01">
+                <input type="checkbox" id="ss01" />
+                ss01</label>
+              <label for="ss02">
+                <input type="checkbox" id="ss02" />
+                ss02</label>
+              <label for="ss03">
+                <input type="checkbox" id="ss03" />
+                ss03</label>
+              <label for="ss04">
+                <input type="checkbox" id="ss04" />
+                ss04</label>
+              <label for="ss05">
+                <input type="checkbox" id="ss05" />
+                ss05</label>
+              <label for="ss06">
+                <input type="checkbox" id="ss06" />
+                ss06</label>
+              <label for="ss07">
+                <input type="checkbox" id="ss07" />
+                ss07</label>
+              <label for="ss08">
+                <input type="checkbox" id="ss08" />
+                ss08</label>
+              <label for="ss09">
+                <input type="checkbox" id="ss09" />
+                ss03</label>
+              <label for="ss10">
+                <input type="checkbox" id="ss10" />
+                ss10</label>
+              <label for="ss11">
+                <input type="checkbox" id="ss11" />
+                ss11</label>
+              <label for="ss12">
+                <input type="checkbox" id="ss12" />
+                ss12</label>
+              <label for="ss13">
+                <input type="checkbox" id="ss13" />
+                ss13</label>
+              <label for="ss14">
+                <input type="checkbox" id="ss14" />
+                ss14</label>
+              <label for="ss15">
+                <input type="checkbox" id="ss15" />
+                ss15</label>
+              <label for="ss16">
+                <input type="checkbox" id="ss16" />
+                ss16</label>
+              <label for="ss17">
+                <input type="checkbox" id="ss17" />
+                ss17</label>
+              <label for="ss18">
+                <input type="checkbox" id="ss18" />
+                ss18</label>
+              <label for="ss19">
+                <input type="checkbox" id="ss19" />
+                ss19</label>
+              <label for="ss20">
+                <input type="checkbox" id="ss20" />
+                ss20</label>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                Numeric
+              </legend>
+              <label for="lnum">
+                <input type="checkbox" id="lnum" />
+                lnum  Lining Figures</label>
+              <label for="onum">
+                <input type="checkbox" id="onum" />
+                onum  Oldstyle Figures</label>
+              <label for="pnum">
+                <input type="checkbox" id="pnum" />
+                pnum  Proportional Figures</label>
+              <label for="tnum">
+                <input type="checkbox" id="tnum" />
+                tnum  Tabular Figures</label>
+              <label for="sinf">
+                <input type="checkbox" id="sinf" />
+                sinf  Scientific Inferiors</label>
+              <label for="zero">
+                <input type="checkbox" id="zero" />
+                zero  Slashed Zero</label>
+              <label for="frac">
+                <input type="checkbox" id="frac" />
+                frac  Fractional Glyphs</label>
+              <label for="ordn">
+                <input type="checkbox" id="ordn" />
+                ordn  Ordinals</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                Other
+              </legend>
+
+              <label for="kern">
+                <input type="checkbox" id="kern" checked="checked"/>
+                kern  Kerning</label>
+            </fieldset>
+            <!--<![endif]-->
+
+          </div> </label>
+      </form>
+    </header>
+
+    <div id="main">
+      <h1>This font is called <span id="font-name">Libre Baskerville</span>.</h1>
+  
+      <div id="alpha" class="copy">
+  
+        <h2>Here are a bunch of panemes to show as many glyphs as we can.</h2>
+        
+        <p class="caption">Note: Some fonts may not show all accented and non-Latin characters correctly, due to their lack of support of these glyphs.</p>
+  
+        <p>
+          The quick brown fox jumps over the lazy dog. Pójdźże, kiń tę chmurność w głąb flaszy!
+          Lynx c.q. vos prikt bh: dag zwemjuf!
+          Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich
+          Portez ce vieux whisky au juge blond qui fume
+          Pijamalı hasta yağız şoföre çabucak güvendi
+          El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.
+          Flygande bäckasiner söka strax hwila på mjuka tuvor.
+          <span class="ru">Любя, съешь щипцы, — вздохнёт мэр, — кайф жгуч</span>
+          Nechť již hříšné saxofony ďáblů rozzvučí síň úděsnými tóny waltzu, tanga a quickstepu.
+          Ξεσκεπάζω την ψυχοφθόρα βδελυγμία.
+          Įlinkusi fechtuotojo špaga blykčiodama gręžė apvalų arbūzą.
+          עטלף אבק נס דרך מזגן שהתפוצץ כי חם.‎
+          Jove xef, porti whisky amb quinze glaçons d'hidrogen, coi!
+          Nne, nna, wepụ he'l'ụjọ dum n'ime ọzụzụ ụmụ, vufesi obi nye Chukwu, ṅụrịanụ, gbakọọnụ kpaa, kwee ya ka o guzoshie ike; ọ ghaghị ito, nwapụta ezi agwa.
+          Ìwò̩fà ń yò̩ séji tó gbojúmó̩, ó hàn pákànpò̩ gan-an nis̩é̩ rè̩ bó dò̩la.
+          Jong Xhosas of Zoeloes wil hou by die status quo vir chemie in die Kaap
+        </p>
+  
+        <h1>Text with common ligatures.</h1>
+  
+        <p class="figure" id="figure1">
+          This structure finds flooded 	psycho <em>puffins</em>.
+        </p>
+        <p class="caption">
+          Figure 1 &mdash; When ligatures turned on, ligatures will appear in the text above in fonts that support it (common ones are "fi" and "ff").  Futhermore, "st" and
+          "ct" are common historical ligatures as well.
+        </p>
+  
+        <h1>CSS small-caps vs. OpenType smcp</h1>
+        
+        <!--[if lt IE 9 ]>
+        <p class="warning">Note: this test does not work in IE8 because your browser does not support
+        CSS3 <code>font-feature-settings</code></p>
+        <![endif]-->
+  
+        <h2>This sentence is rendered with CSS font-variant: small-caps.</h2>
+  
+        <p class="sc-css">
+          The quick brown fox jumps over the lazy dog.
+          Lynx c.q. vos prikt bh: dag zwemjuf!
+          Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich
+          Portez ce vieux whisky au juge blond qui fume
+          Pijamalı hasta yağız şoföre çabucak güvendi
+          El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.
+          Flygande bäckasiner söka strax hwila på mjuka tuvor.
+        </p>
+  
+        <h2>This sentence is with CSS font-feature-settings: "smcp" 1</h2>
+  
+        <p class="sc-opentype">
+          The quick brown fox jumps over the lazy dog.
+          Lynx c.q. vos prikt bh: dag zwemjuf!
+          Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich
+          Portez ce vieux whisky au juge blond qui fume
+          Pijamalı hasta yağız şoföre çabucak güvendi
+          El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.
+          Flygande bäckasiner söka strax hwila på mjuka tuvor.
+        </p>
+  
+      </div>
+  
+      <div id="numeric" class="copy">
+  
+        <h2>Here are a few test sentences with numbers.</h2>
+  
+        <div id="figure2" class="figure">
+          <div class="formula">
+            1/1 = 1
+          </div>
+          <div class="formula">
+            1/2 = 0.5
+          </div>
+          <div class="formula">
+            1/3 = 0.3
+          </div>
+          <div class="formula">
+            2/3 = 0.6
+          </div>
+          <div class="formula">
+            1/4 = 0.25
+          </div>
+          <div class="formula">
+            3/4 = 0.75
+          </div>
+          <div class="formula">
+            1/5 = 0.2
+          </div>
+          <div class="formula">
+            2/5 = 0.4
+            <div class="formula">
+              3/5 = 0.6
+            </div>
+            <div class="formula">
+              4/5 = 0.8
+            </div>
+            <div class="formula">
+              1/6 = 0.16
+            </div>
+            <div class="formula">
+              5/6 = 0.83
+            </div>
+            <div class="formula">
+              1/7 =  0.142857
+            </div>
+          </div>
+        </div>
+  
+        <div class="caption">
+          Figure 2 &mdash; These fractions will be drawn with one glyph when <code>
+            frac</code>
+          is turned on.
+          Also, the numbers on the right hand side of the equations will line up when <code>
+            tnum</code>
+          is used.
+        </div>
+        <div id="figure3" class="figure">
+          <p class="big">
+            1/2 = 0.5
+            <br />
+            0 1 2 3 4 5 6 7 8 9
+          </p>
+        </div>
+        
+        <div class="caption">
+          Figure 3 &mdash; Larger numbers. Displayed here to show details.
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,36 @@
+body {
+  font-family: "GraublauWeb-Regular", "Impact", sans-serif;
+  font-size: 30px;
+  -moz-font-feature-settings:"mgrk" 0;
+  -ms-font-feature-settings:"mgrk" 0;
+  -o-font-feature-settings:"mgrk" 0;
+  -webkit-font-feature-settings:"mgrk" 0;
+  font-feature-settings:"mgrk" 0;
+}
+
+strong {
+  font-family: "GraublauWeb-Bold", "Impact", sans-serif;
+  font-weight: normal;
+}
+
+strong.faux-bold {
+  font-family: "GraublauWeb-Regular", "Impact", sans-serif;
+  font-weight: bold;
+}
+
+strong.double-faux-bold {
+  font-family: "GraublauWeb-Bold", "Impact", sans-serif;
+  font-weight: bold;
+}
+
+
+
+.mgrk {
+  
+  text-rendering: optimizeLegibility; /* turns on ligatures in Webkit */
+  -moz-font-feature-settings:"mgrk" 1;
+  -ms-font-feature-settings:"mgrk" 1;
+  -o-font-feature-settings:"mgrk" 1;
+  -webkit-font-feature-settings:"mgrk" 1;
+  font-feature-settings:"mgrk" 1;
+}

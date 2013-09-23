@@ -1,0 +1,22 @@
+body {
+  font-family: "LibreBaskerville", "Times New Roman", serif;
+  text-rendering: optimizeLegibility; /* turns on ligatures in Webkit */
+}
+
+h2 {
+  font-weight: normal;
+}
+
+body.showHinted {
+  font-family: "hinted-LibreBaskerville", "Times New Roman", serif;
+}
+
+
+body.showFontsquirrel {
+  font-family: "libre_baskerville", "Times New Roman", serif;
+}
+
+body.showGoogle {
+  font-family: "Libre Baskerville", "Times New Roman", serif;
+}
+  

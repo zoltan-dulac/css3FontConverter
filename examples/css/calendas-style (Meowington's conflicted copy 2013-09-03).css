@@ -1,0 +1,25 @@
+body {
+  font-family: "unhinted-Calendas-Plus", "Arial", sans-serif;
+  text-rendering: optimizeLegibility; /* turns on ligatures in Webkit */
+}
+
+body.showHinted {
+  font-family: "hinted-Calendas-Plus", "Arial", sans-serif;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 15px;
+}
+
+
+#figure1 {
+  font-size: 40px;
+}
+
+

@@ -1,0 +1,21 @@
+body {
+  font-family: "unhinted-PTSans", "Arial", sans-serif;
+}
+
+.caption {
+  font-family: "unhinted-PTSans-Caption", "Arial", sans-serif;
+}
+
+body.showHinted {
+  font-family: "hinted-PTSans", "Arial", sans-serif;
+}
+
+body.showHinted .caption {
+  font-family: "hinted-PTSans-Caption", "Arial", sans-serif;
+}
+
+
+small {
+  font-size: 1em;
+  font-stretch: condensed;
+}
