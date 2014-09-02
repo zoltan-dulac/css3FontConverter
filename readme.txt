@@ -33,7 +33,7 @@ The shell script that uses FontForge, Batik (with Java installed), sfnt2woff
 and either EOTFast or ttf2eot. Full instructions on how to install these
 packages are at:
 
-http://www.useragentman.com/blog/2011/02/20/converting-font-face-fonts-quickly-in-any-os/
+http://www.useragentman.com/blog/the-css3-font-converter/
 
 LICENSE:
 --------
