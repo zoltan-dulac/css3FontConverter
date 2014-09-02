@@ -78,7 +78,6 @@ https://github.com/zoltan-dulac/css3FontConverter
 REQUIREMENTS:
 -------------
 
-
 This script uses the following programs to do the heavy listing.
   - Fontforge:      http://fontforge.sourceforge.net/
   - EOTFAST:        http://eotfast.com/
