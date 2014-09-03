@@ -228,6 +228,27 @@ then
 		$FONTFORGE -script $SCRIPT_DIR/tableSupport.pe $i 2> /dev/null | 
 			sed "s/\[//g; s/\]//g;" | tr ',' '
 '
+		#.. We also want to show the supported glyphs.
+		#   We can only do this via gawk, so we test if it exists.
+		which gawk > /dev/null 2> /dev/null
+		if [ "$?" = "0" ]
+		then  
+			#   first, convert to .sfd ....
+			$FONTFORGE -script $SCRIPT_DIR/2sfd.pe $i 2> /dev/null
+			
+			# Now, grep the .sfd file for the glyph info.
+			FILE_STUB=`echo $i |
+				sed "s/\.[tT][tT][fF]$//" |
+				sed "s/\.[oO][tT][fF]$//"`
+			
+			echo "Glyphs supported: "	
+			grep -a "^dup "  $FILE_STUB.sfd | tr '/' ' ' | gawk '{printf "%c", $2}'
+			echo
+			# rm *.sfd *.afm
+		else
+			echo "If you want to see the glyph information for this font, you "
+			echo "must install gawk."
+		fi
 		
   done
   
