@@ -85,8 +85,8 @@ This script uses the following programs to do the heavy listing.
   - ttfautohint:    http://www.freetype.org/ttfautohint/
   - woff2_compress: http://code.google.com/p/font-compression-reference/w/list
   - EOTFAST:        http://eotfast.com/ (Windows only, included in this package
-  					with kind permission from Richard Fink 
-  					(http://readableweb.com/)
+                    with kind permission from Richard Fink 
+                    (http://readableweb.com/)
   
 Full instructions on how to install these packages are at:
 
