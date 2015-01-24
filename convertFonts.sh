@@ -147,7 +147,17 @@ fi
 
 
 FILE_STUBS=''
-SCRIPT_DIR=`echo $0 | sed "s/convertFonts.sh//"`
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  TARGET="$(readlink "$SOURCE")"
+  if [[ $SOURCE == /* ]]; then
+    SOURCE="$TARGET"
+  else
+    SCRIPT_DIR="$( dirname "$SOURCE" )"
+    SOURCE="$SCRIPT_DIR/$TARGET" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  fi
+done
+SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 IFS=$(echo -en "\n\b")
 
@@ -352,7 +362,8 @@ getFontName () {
 	then
 		$FONTFORGE -script `cygpath -w $SCRIPT_DIR/getFontName.pe` \
 			`cygpath $1` 2> /dev/null | tr ' ' '_'  |
-			sed "s///g" 
+			sed "s/
+//g" 
 	else
 		fontforge -script $SCRIPT_DIR/getFontName.pe $1 2> /dev/null | tr ' ' '_' 
 	fi
