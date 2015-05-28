@@ -16,7 +16,7 @@
 # Uncomment the line below with the right directories.  Remember the 
 # $PATH at the beginning of the string, or the script will forget what
 # was originally in the PATH.
-PATH="$PATH:/Users/zhawry/bin/"
+#PATH="$PATH:/paths/to/other/dependencies/go/here"
 
 
 #########################################################################
@@ -352,7 +352,8 @@ getFontName () {
 	then
 		$FONTFORGE -script `cygpath -w $SCRIPT_DIR/getFontName.pe` \
 			`cygpath $1` 2> /dev/null | tr ' ' '_'  |
-			sed "s///g" 
+			sed "s/
+//g" 
 	else
 		fontforge -script $SCRIPT_DIR/getFontName.pe $1 2> /dev/null | tr ' ' '_' 
 	fi
