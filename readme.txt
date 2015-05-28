@@ -90,7 +90,7 @@ This script uses the following programs to do the heavy listing.
   
 Full instructions on how to install these packages are at:
 
-http://www.useragentman.com/blog/2011/02/20/converting-font-face-fonts-quickly-in-any-os/
+http://www.useragentman.com/blog/the-css3-font-converter/
 
 LICENSE:
 --------
