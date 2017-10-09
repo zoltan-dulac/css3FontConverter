@@ -1,5 +1,4 @@
-QUICK START GUIDE:
-------------------
+# QUICK START GUIDE
 
 This CSS3 Font Converter is a shell script that allows developers, using a
 command line, to convert a set of TTF and OTF fonts into all the other
@@ -20,8 +19,7 @@ will also generate a stylesheet, stylesheet.css, that will produce the
 If you are converting .otf fonts, a .ttf font will be generated first before
 the other fonts. 
 
-FULL COMMAND LINE OPTIONS:
----------------------------
+## FULL COMMAND LINE OPTIONS
 
 Usage: /Users/zhawry/bin/convertFonts.sh [-options] [fontfilelist]
 
@@ -64,8 +62,7 @@ Where: - [fontfilelist] is a space separated list of True Type (.ttf) or
          
          --help: This help menu.
 
-SUPPORTED OSes:
----------------
+## SUPPORTED OSes
 
 Windows (using Cygwin), OS X and Linux (tested on Ubuntu 10.10 Maverick
 Meerkat).  Please let us know if you find it works on others.
@@ -75,10 +72,9 @@ Installation instructions and more information can be found at
 https://github.com/zoltan-dulac/css3FontConverter
 
 
-REQUIREMENTS:
--------------
+## REQUIREMENTS
 
-This script uses the following programs to do the heavy listing.
+This script uses the following programs to do the heavy lifting.
   - Fontforge:      http://fontforge.sourceforge.net/
   - ttf2eot:        http://code.google.com/p/ttf2eot/)
   - sfnt2woff:      http://people.mozilla.com/~jkew/woff/
@@ -92,13 +88,11 @@ Full instructions on how to install these packages are at:
 
 http://www.useragentman.com/blog/the-css3-font-converter/
 
-LICENSE:
---------
+## LICENSE
 
 This code is released under the LGPL.  License can be found at http://www.gnu.org/licenses/lgpl.html
 
-CHANGELOG:
-----------
+## CHANGELOG
 
 Feb 20, 2011 - Initial Release
 Sep 22, 2013 - Added support for font-weight and autohinting, as well as
@@ -107,8 +101,7 @@ Sep 22, 2013 - Added support for font-weight and autohinting, as well as
 Sep 02, 2014 - Added support for WOFF2 fonts, if woff2_compress is in the user's
                path.  This program can be retrieved from here:
                http://code.google.com/p/font-compression-reference/w/list
-CONTACT:
---------
+## CONTACT
 
 Any bug reports, fixes or feature requests: zoltan.dulac@gmail.com.  
 Code available at https://github.com/zoltan-dulac/css3FontConverter
