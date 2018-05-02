@@ -27,15 +27,15 @@ ARGS=`echo $* | tr ' ' '
 
 SHOW_FEATURES=`echo "$ARGS" | grep '\--show-features'`
 USE_FONT_WEIGHT=`echo "$ARGS" | grep '\--use-font-weight'`
-USE_FONT_STRETCH=`echo "$ARGS" | grep '\--use-font-stretch'` 
+USE_FONT_STRETCH=`echo "$ARGS" | grep '\--use-font-stretch'`
 DO_AUTOHINT=`echo "$ARGS" | grep '\--autohint'`
 OUTPUT=`echo "$ARGS" | grep '\--output'`
 USE_FONT_PREFIX=`echo "$ARGS" | grep '\--use-font-prefix'`
 USE_TTF2EOT=`echo "$ARGS" | grep '\--use-ttf2eot'`
 
 
-CLEANUP=`echo "$ARGS" | grep '\--clean'` 
- 
+CLEANUP=`echo "$ARGS" | grep '\--clean'`
+
 SHOW_HELP=`echo "$ARGS" | grep '\--help'`
 
 OPTIONS=`echo "$ARGS" | grep '\--' | tr '
@@ -54,7 +54,7 @@ FONT_PREFIX="`echo $USE_FONT_PREFIX | awk -F'=' '{print $2}'`"
 #.. is 0 if has this binary, non-zero otherwise 
 HAS_WOFF2_COMPRESS=`which 'woff2_compress' > /dev/null; echo $?`
 
-if [ "$FONT_PREFIX" = "" -a "$DO_AUTOHINT" != "" ] 
+if [ "$FONT_PREFIX" = "" -a "$DO_AUTOHINT" != "" ]
 then
 	FONT_PREFIX="hinted-"
 fi
@@ -99,7 +99,7 @@ then
 	elif [ "$AUTOHINTER" != "ttfautohint" ]
 	then
 		echo "The autohint option must be set to either ttfautohint or adobe. Bailing" 1>&2
-		exit 30 
+		exit 30
 	fi
 fi
 
@@ -124,7 +124,7 @@ then
 **********************************************************************************
 
 "
-fi 
+fi
 
 #########################################################################
 ## PROGRAM AREA                                                         #
@@ -134,10 +134,10 @@ fi
 FONTFORGE_EXT=""
 FONTFORGE=`which fontforge 2> /dev/null`
 if [ "$?" != "0" ]
-then 
+then
 	FONTFORGE_EXT="bat"
 	FONTFORGE=`which fontforge.bat 2> /dev/null`
-	
+
 	if [ "$?" != "0" ]
 	then
 		echo "Error: FontForge is not installed. Bailing" 1>&2
@@ -225,20 +225,20 @@ then
 		echo "Font: $i"
 		# echo -n "Vendor: "
 		# $FONTFORGE -script 'showVendor.pe'
-		$FONTFORGE -script $SCRIPT_DIR/tableSupport.pe $i 2> /dev/null | 
+		$FONTFORGE -script $SCRIPT_DIR/tableSupport.pe $i 2> /dev/null |
 			sed "s/\[//g; s/\]//g;" | tr ',' '
 '
-		
+
   done
-  
-  echo 
+
+  echo
 	echo "Information on these features can be found at these URLS: "
 	echo "  - http://www.microsoft.com/typography/otspec/featurelist.htm"
 	echo "  - http://partners.adobe.com/public/developer/opentype/index_tag3.html"
 	echo
 	exit 0
 
-		
+
 
 #.. if the clean option is set, let's get rid of all files this
 #   script may have created.
@@ -250,19 +250,19 @@ WARNING!  This will remove all non TTF and OTF fonts,
 as well as hinted fonts and css stylesheets, in this directory.
 Are you *sure* you want to do this [y/N]?"
   read ANS
-  
+
   if [ "$ANS" = "y" -o "$ANS" = "Y" ]
   then
     echo "Removing files."
     rm -r *.eot *.svg *.woff *.woff2  old *.css hinted-*.ttf 2> /dev/null
-    
-   
-    
+
+
+
     echo "DONE"
     exit 20
-  else 
+  else
     exit 21
-  fi 
+  fi
 
 
 #.. if the filelist contains any files prefixed with 'hinted-' and the 
@@ -270,18 +270,18 @@ Are you *sure* you want to do this [y/N]?"
 elif [ "$DO_AUTOHINT" != "" ]
 then
   HINTED_FILES=`echo "$ARGS" | egrep "^hinted-"`
-  
+
   if [ "$HINTED_FILES" != "" ]
   then
-    echo "ERROR: Attempting to autohint already hinted files. You 
+    echo "ERROR: Attempting to autohint already hinted files. You
 should only try to autohint files that haven't been hinted already.
 You should try to clean this directory by running this script with
 the --clean option.  See --help for more details.  Bailing. " 1>&2
     exit 10
   fi
- 
 
-fi 
+
+fi
 
 
 
@@ -295,9 +295,9 @@ toTTF () {
 			`cygpath -w $i` 2> /dev/null
 	else
 		echo "(Using Cygwin or Unix FontForge)"
-		$FONTFORGE -script $SCRIPT_DIR/2ttf.pe $i 
+		$FONTFORGE -script $SCRIPT_DIR/2ttf.pe $i
 	fi
-	
+
 }
 
 #.. converts a font to EOT format.  Uses EOTFAST if possible, fallbacks
@@ -307,21 +307,21 @@ toTTF () {
 toEOT () {
 	which 'EOTFAST-1' > /dev/null
 	FOUND="$?"
-	
-		
+
+
 	if [ "$FOUND" = "0" -a  "$USE_TTF2EOT" =	"" ]
 	then
 		echo "(Using EOTFAST)"
 		EOTFAST-1 $1 $FILE_STUB.eot
 		SUCCESS="$?"
-	
+
 		if [ "$SUCCESS" != "0" ]
 		then
 			echo "EOTFAST failed.  Using ttf2eot instead"
 		fi
 	fi
-	
-	
+
+
 	if [ "$FOUND" != "0" -o "$SUCCESS" != "0" -o "$USE_TTF2EOT" != "" ]
 	then
 		echo "(Using ttf2eot)"
@@ -338,30 +338,26 @@ toSVG() {
 	if [ -f $SCRIPT_DIR/2svg.pe ]
 	then
 		fontforge -script $SCRIPT_DIR/2svg.pe $1 2> /dev/null
-	else 
+	else
 		echo "Error: cannot produce SVG font"
 	fi
 }
 
 #.. This gets the font name.  Used when not using the 
 #   --use-font-weight option.
-getFontName () { 
+getFontName () {
 
-  
+
 	if [ "$FONTFORGE_EXT" = "bat" ]
 	then
 		$FONTFORGE -script `cygpath -w $SCRIPT_DIR/getFontName.pe` \
 			`cygpath $1` 2> /dev/null | tr ' ' '_'  |
 			sed "s/
-//g" 
+//g"
 	else
-		fontforge -script $SCRIPT_DIR/getFontName.pe $1 2> /dev/null | tr ' ' '_' 
+		fontforge -script $SCRIPT_DIR/getFontName.pe $1 2> /dev/null | tr ' ' '_'
 	fi
 }
-
-
-
-
 
 getSVGID () {
 	grep "id=" $1 | tr ' ' '
@@ -383,8 +379,8 @@ toWOFF2 () {
 #   fontforge.
 getFontInfo() {
 	OUT=`fontforge -script $SCRIPT_DIR/getFontInfo.pe $1 2> /dev/null`
-	
-	INFO_WEIGHT=`echo "$OUT" | egrep "^Weight:"` 
+
+	INFO_WEIGHT=`echo "$OUT" | egrep "^Weight:"`
 	INFO_FONTNAME=`echo "$OUT" | egrep "^Font name:"`
 	INFO_FULLNAME=`echo "$OUT" | egrep "^Full name:"`
 	INFO_ITALICANGLE=`echo "$OUT" | egrep "^Italic angle:"`
@@ -398,10 +394,10 @@ getFontInfo() {
 
 isWeightStyle () {
 	STYLE=`echo $1 | sed 's/ /\[ _-\]/g'`
-	R="F" 
-	
+	R="F"
+
 	echo "$INFO_WEIGHT" | grep -i "$STYLE" > /dev/null
-	
+
 	if [ "$?" = "0" ]
 	then
 		R="T"
@@ -410,10 +406,10 @@ isWeightStyle () {
 		if [ "$?" = "0" ]
 		then
 			R="T"
-		else 
-	
+		else
+
 			echo "$INFO_FONTNAME" | grep -i "$STYLE" > /dev/null
-	
+
 			if [ "$?" = "0" ]
 			then
 				R="T"
@@ -421,12 +417,12 @@ isWeightStyle () {
 		fi
 	fi
 
-	#.. if we are testing for italic and the answer is F so far, check the 
+	#.. if we are testing for italic and the answer is F so far, check the
 	#   italic angle
 	if [ "$R" = "F" -a "$STYLE" = "italic" ]
 	then
 		ANGLE=`echo "$INFO_ITALICANGLE" | awk -F": " '{print $2}'`
-		
+
 		if [ "$ANGLE" != "0" ]
 		then
 			R="T"
@@ -445,17 +441,17 @@ doautohint() {
 	then
 		#
 		# These are the best options after fiddling around with this a lot.
-		# Note that as of 0.96, the option "--components" has been replaced 
-		# by "--composites". 
+		# Note that as of 0.96, the option "--components" has been replaced
+		# by "--composites".
 		# http://sourceforge.net/projects/freetype/files/ttfautohint/0.96/
-		# 
+		#
 		# Thanks to github user "pep-" for pointing this out.
 		#
 
-		if [ "$TTFAUTOHINT_096_HIGHER" = "T" ] 
-		then 
+		if [ "$TTFAUTOHINT_096_HIGHER" = "T" ]
+		then
 			COMP='--composites'
-		else 
+		else
 			COMP='--components'
 		fi
 
@@ -463,9 +459,8 @@ doautohint() {
 	else
 		#.. The adobe autohinter spews out a lot of junk.  For now, hide it.
 		autohint -q -o $FONT_PREFIX$1 $1 2> /dev/null | grep -iv error | grep -v "^." | grep -v "^$"
-	fi 
+	fi
 }
-
 
 
 if [ "$#" -eq "0" ]
@@ -475,7 +470,7 @@ then
 fi
 
 # .. check to make sure all packages are installed
-for i in sfnt2woff java 
+for i in sfnt2woff
 do
 	which "$i" > /dev/null 2> /dev/null
 	if [ "$?" != "0" ]
@@ -491,32 +486,29 @@ then
 	which $AUTOHINTER > /dev/null 2> /dev/null
 	if [ "$?" != "0" ]
 	then
-		echo "Error: Package $AUTOHINTER is not installed. You cannot use the 
+		echo "Error: Package $AUTOHINTER is not installed. You cannot use the
 	--autohint=$AUTOHINTER option without it.  Bailing.
 	" 1>&2
 		exit 2
 	else
 		#.. We will now check for the version.
 		TTFAUTOHINT_096_HIGHER=`ttfautohint --version |
-			grep ttfautohint | 
-			awk '{if ($2 >= 0.96) { 
+			grep ttfautohint |
+			awk '{if ($2 >= 0.96) {
 				print "T" 
 			} else { 
 				print "F"
 			} 
 			}'`
-		
+
 		echo -n "Using version of ttfautohint >=0.96? "
 		echo $TTFAUTOHINT_096_HIGHER
 	fi
-fi 
-
-	
-
+fi
 
 #.. checks for binaries that convert to EOT format.
 HAS_EOT_SUPPORT=1
-for i in EOTFAST-1 ttf2eot 
+for i in EOTFAST-1 ttf2eot
 do
 	which "$i" > /dev/null 2> /dev/null
 	HAS_EOT_SUPPORT=`expr $? \* $HAS_EOT_SUPPORT`
@@ -536,26 +528,26 @@ fi
 #.. for each font, we create an @font-face rule.
 for i in $ARGS
 do
-	
+
 	#.. check to see if it's a TrueType font
 	file "$i" | grep "TrueType" > /dev/null
 	IS_TTF="$?"
 
 	file "$i" | grep "Spline Font Database" > /dev/null
 	IS_SFD="$?"
-	
+
 	file "$i" | grep "OpenType" > /dev/null
 	IS_OTF="$?"
 
 	if [ "$IS_OTF" = "0" ]
 	then
 		ORIG_TYPE="otf"
-		
+
 	elif [ "$IS_TTF" = "0" ]
 	then
 		ORIG_TYPE="ttf"
 	fi
-	
+
 	if [ "$DO_AUTOHINT" != "" -a \
 			\( \( "$ORIG_TYPE" = "ttf" -a "$AUTOHINTER" = "autohint" \) -o \
 			\( "$ORIG_TYPE" = "otf" -a "$AUTOHINTER" = "ttfautohint" \) \) ]
@@ -563,13 +555,13 @@ do
 			echo "Error!  Cannot use $AUTOHINTER on $ORIG_TYPE fonts.  Bailing" 1>&2
 			exit 30
 		fi
-	
-	
+
+
 
 	if [ "$IS_OTF" = 0 -o "$IS_TTF" = 0 -o "$IS_SFD" = 0 ]
 	then
 		cp $i old
-	
+
 		NEW_FILE=`echo $i | sed "s/ /_/g; s/TTF$/ttf/; s/OTF$/otf/"`
 
 		if [ "$i" != "$NEW_FILE" ]
@@ -578,63 +570,63 @@ do
 			mv $i $NEW_FILE
 			i="$NEW_FILE"
 		fi
-	
-		FILE_STUB=`echo $NEW_FILE | 
+
+		FILE_STUB=`echo $NEW_FILE |
 			sed "s/\.[tT][tT][fF]$//" |
 			sed "s/\.[oO][tT][fF]$//"`
 
 		# echo $FILE_STUB
 
-		#.. If this is an OTF Font, then convert it to TTF.  
+		#.. If this is an OTF Font, then convert it to TTF.
 
 		if [ "$IS_OTF" = "0" ]
-		then 
-		
+		then
+
 			if [ ! -f $FILE_STUB.ttf ]
 			then
 				toTTF $NEW_FILE
 			fi
 			NEW_FILE="$FILE_STUB.ttf"
 		fi
-		
-		
+
+
 		#.. If --autohint option is set, we must hint
 		#   this file with ttfautohint
 		if [ "$DO_AUTOHINT" != "" ]
 		then
-		
+
 			echo "Hinting $NEW_FILE ..."
 			doautohint $NEW_FILE
 			FILE_STUB="$FONT_PREFIX$FILE_STUB"
 			NEW_FILE="$FONT_PREFIX$NEW_FILE"
 		fi
-		
-		
+
+
 
 		if [ ! -f $FILE_STUB.eot ]
 		then
 			echo "Converting $FILE_STUB to eot ($NEW_FILE)"
-			toEOT $NEW_FILE 
-		else 
+			toEOT $NEW_FILE
+		else
 			echo "$FILE_STUB.eot exists, skipping ..."
 		fi
-	
+
 		#.. do not convert a font to svg format if we are using
 		#   --use-font-weight, since several SVG declarations of
 		#   the same font will not work in iOS < 4.2.
 		if [ "$USE_FONT_WEIGHT" = "" ]
 		then
-		
+
 			if [ ! -f $FILE_STUB.svg ]
 			then
 				echo "Converting $FILE_STUB to svg"
 				toSVG $NEW_FILE $FILE_STUB
-			else 
+			else
 				echo "$FILE_STUB.svg exists, skipping ..."
 			fi
-			
+
 	fi
-	
+
 		if [ ! -f $FILE_STUB.woff ]
 		then
 			# NOTE: we use $i instead of $NEW_FILE, since woff is
@@ -648,10 +640,10 @@ do
 				echo "Converting $FILE_STUB to woff from original font $i."
 				toWOFF $i
 			fi
-		else 
+		else
 			echo "$FILE_STUB.woff exists, skipping ..."
 		fi
-				
+
 		if [ ! -f $FILE_STUB.woff2 -a "$HAS_WOFF2_COMPRESS" == "0" ]
 		then
 			# NOTE: we use $i instead of $NEW_FILE, since woff2 is
@@ -668,13 +660,13 @@ do
 				echo "Converting $FILE_STUB to woff2 from converted TTF ($NEW_FILE)"
 				toWOFF2 $NEW_FILE
 			fi
-		else 
+		else
 			echo "$FILE_STUB.woff2 exists, skipping ..."
 		fi
 
-	
+
 		FILE_STUBS="$FILE_STUBS $FILE_STUB"
-	else 
+	else
 		echo "File $i is not a TrueType or OpenType font. Skipping"
 	fi
 done
@@ -688,7 +680,7 @@ COMMENT=\
  * by Zoltan Hawryluk (http://www.useragentman.com). 
  * Latest version of this program is available at
  * https://github.com/zoltan-dulac/css3FontConverter"
- 
+
 if [ "$OPTIONS" != "" ]
 then
   COMMENT="$COMMENT
@@ -700,7 +692,7 @@ fi
 
 COMMENT="$COMMENT
  */
-" 
+"
 
 echo "$COMMENT" > $STYLESHEETFILE
 
@@ -709,12 +701,12 @@ IFS=$(echo -en " ")
 for i in $FILE_STUBS
 do
 
-	
+
 	if [ "$USE_FONT_WEIGHT" != "" ]
 	then
 		#.. first, get the info about the font from fontforge.
 		getFontInfo $i
-		
+
 		#.. next, from the fontforge info, find out if the font is bold, italic and/or condensed.
 		IS_BOLD=`isWeightStyle 'bold'`
 		IS_BLACK=`isWeightStyle 'black'`
@@ -724,18 +716,18 @@ do
 		IS_EXTRA_LIGHT=`isWeightStyle 'extra light'`
 		IS_DEMI_BOLD=`isWeightStyle 'demi bold'`
 		IS_EXTRA_BOLD=`isWeightStyle 'extra bold'`
-		
+
 		IS_ITALIC=`isWeightStyle 'italic'`
-		
+
 		IS_CONDENSED=`isWeightStyle 'condensed'`
 		IS_EXPANDED=`isWeightStyle 'expanded'`
-		
+
 		#.. condensed and narrow are the same (I believe).
 		if [ "$IS_CONDENSED" = "F" ]
 		then
 			IS_CONDENSED=`isWeightStyle 'narrow'`
 		fi
-		
+
 		#.. set variables that will be used in the @font-face declaration
 		#   These values were grabbed from the article at
 		#   http://destination-code.blogspot.ca/2009/01/font-weight-number-keywords-100-900.html
@@ -760,21 +752,21 @@ do
 		elif [ "$IS_EXTRA_BOLD" = "T" ]
 		then
 			FONT_WEIGHT="800";
-		
+
 		elif [ "$IS_BLACK" = "T" ]
 		then
 			FONT_WEIGHT="900"
 		else
 			FONT_WEIGHT="400";
 		fi
-		
+
 		if [ "$IS_ITALIC" = "T" ]
 		then
 			FONT_STYLE="italic";
 		else
 			FONT_STYLE="normal";
 		fi
-		
+
 		if [ "$USE_FONT_STRETCH" != "" ]
 		then
 			if [ "$IS_CONDENSED" = "T" ]
@@ -787,8 +779,8 @@ do
 			  FONT_STRETCH="normal";
 			fi
 		fi
-		
-		
+
+
 		#.. the name we will refer to in CSS will be without the words "Bold", "Italic", etc.
 		#   NOTE: I Wanted to use sed with the 'gi' options, but OSX's sed (BSD
 		#	I assume) doesn't do the 'i' case insensitive switch. Boo!
@@ -803,43 +795,43 @@ do
 			s/[dD][eE][mM][iI]//g;
 			s/[rR][oO][mM][aA][nN]//g;
 			s/[tT][hH][iI][nN]//g;"
-		
-		#.. we also remove the words "Condensed" and "Expanded" if the --use-font-stretch 
+
+		#.. we also remove the words "Condensed" and "Expanded" if the --use-font-stretch
 		#   option is enabled.
-		
+
 		if [ "$USE_FONT_STRETCH" != "" ]
 		then
 			FONTNAME_SED_OPTIONS="$FONTNAME_SED_OPTIONS;
 			   s/[cC][oO][nN][dD][eE][nN][sS][eE][dD]//g;
 			   s/[nN][aA][rR][rR][oO][wW]//g;
 			   s/[eE][xX][pP][aA][nN][dD][eE][dD]//g;"
-		fi   
-		
+		fi
+
 		#.. get rid of final "-" at the end of the font name, if it exists.
 		FONTNAME_SED_OPTIONS="$FONTNAME_SED_OPTIONS
-			     s/-$//"      
-			     
+			     s/-$//"
+
 		FONTNAME=`echo $INFO_FONTNAME | awk -F": " '{print $2}' |
 			sed "$FONTNAME_SED_OPTIONS" | sed "s/[-_]*$//g"`
 		FONTNAME="$FONT_PREFIX$FONTNAME"
 		echo -n "Font: $FONTNAME"
-		
+
 		if [ "$FONT_STRETCH" != "normal" -a  "$FONT_STRETCH" != "" ]
 		then
 			echo -n ", stretch: $FONT_STRETCH"
 		fi
-		
+
 		if [ "$FONT_WEIGHT" != "normal" -a  "$FONT_WEIGHT" != "" ]
 		then
 			echo -n ", weight: $FONT_WEIGHT"
 		fi
-		
+
 		if [ "$FONT_STYLE" != "normal" -a  "$FONT_STYLE" != "" ]
 		then
 			echo -n ", style: $FONT_STYLE"
 		fi
 		echo
-	else  
+	else
 		FONTNAME="$FONT_PREFIX`getFontName $i.$ORIG_TYPE`"
 		echo "Font: $FONTNAME"
 	fi
@@ -848,15 +840,15 @@ do
 	then
 		EXTRA_FONT_INFO=" url('$i.otf')  format('opentype'),
       "
-	else 
+	else
 		EXTRA_FONT_INFO=""
 	fi
 
-	
+
   if [ "$USE_FONT_WEIGHT" != "" ]
   then
-  
-  
+
+
 		RULE="
 @font-face {
   font-family: '$FONTNAME';
@@ -873,26 +865,26 @@ RULE="$RULE
       $EXTRA_FONT_INFO url('$i.ttf')  format('truetype');
   font-weight: $FONT_WEIGHT;
   font-style: $FONT_STYLE;"
-	
-	
-	
+
+
+
 	if [ "$USE_FONT_STRETCH" != "" ]
 	then
 
 		RULE="$RULE
 	font-stretch: $FONT_STRETCH;"
-	
+
 	fi
-	
+
 	RULE="$RULE
-}" 
+}"
 
   echo "$RULE" >> $STYLESHEETFILE
   else
- 
+
 		# echo "Extracting SVG ID"
 		SVG_ID=`getSVGID $i.svg`
-	
+
     echo "
 @font-face {
   font-family: '$FONTNAME';
