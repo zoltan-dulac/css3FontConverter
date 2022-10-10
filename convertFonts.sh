@@ -718,13 +718,29 @@ do
 		#.. next, from the fontforge info, find out if the font is bold, italic and/or condensed.
 		IS_BOLD=`isWeightStyle 'bold'`
 		IS_BLACK=`isWeightStyle 'black'`
+		IS_HEAVY=`isWeightStyle 'heavy'`
 		IS_LIGHT=`isWeightStyle 'light'`
 		IS_MEDIUM=`isWeightStyle 'medium'`
 		IS_THIN=`isWeightStyle 'thin'`
+		IS_HAIRLINE=`isWeightStyle 'hairline'`
 		IS_EXTRA_LIGHT=`isWeightStyle 'extra light'`
+		IS_EXTRALIGHT=`isWeightStyle 'extralight'`
+		IS_ULTRA_LIGHT=`isWeightStyle 'ultra light'`
+		IS_ULTRALIGHT=`isWeightStyle 'ultralight'`
 		IS_DEMI_BOLD=`isWeightStyle 'demi bold'`
+		IS_DEMIBOLD=`isWeightStyle 'demibold'`
+		IS_SEMI_BOLD=`isWeightStyle 'semi bold'`
+		IS_SEMIBOLD=`isWeightStyle 'semibold'`
+		IS_DEMI=`isWeightStyle 'demi'`
 		IS_EXTRA_BOLD=`isWeightStyle 'extra bold'`
-		
+		IS_EXTRABOLD=`isWeightStyle 'extrabold'`
+		IS_ULTRA_BOLD=`isWeightStyle 'ultra bold'`
+		IS_ULTRABOLD=`isWeightStyle 'ultrabold'`
+		IS_EXTRA_BLACK=`isWeightStyle 'extra black'`
+		IS_ULTRA_BLACK=`isWeightStyle 'ultra black'`
+		IS_EXTRABLACK=`isWeightStyle 'extrablack'`
+		IS_ULTRABLACK=`isWeightStyle 'ultrablack'`
+
 		IS_ITALIC=`isWeightStyle 'italic'`
 		
 		IS_CONDENSED=`isWeightStyle 'condensed'`
@@ -739,31 +755,33 @@ do
 		#.. set variables that will be used in the @font-face declaration
 		#   These values were grabbed from the article at
 		#   http://destination-code.blogspot.ca/2009/01/font-weight-number-keywords-100-900.html
-		if [ "$IS_THIN" = "T" ]
+		if [ "$IS_THIN" = "T" ] | [ "$IS_HAIRLINE" = "T" ]
 		then
 			FONT_WEIGHT="100";
-		elif [ "$IS_EXTRA_LIGHT" = "T" ]
+		elif [ "$IS_EXTRA_LIGHT" = "T" ] | [ "$IS_EXTRALIGHT" = "T" ] | [ "$IS_ULTRALIGHT" = "T" ] | [ "$IS_ULTRA_LIGHT" = "T" ]
 		then
 			FONT_WEIGHT="200";
 		elif [ "$IS_LIGHT" = "T" ]
 		then
 			FONT_WEIGHT="300";
-		elif [ "$IS_BOLD" = "T" ]
-		then
-			FONT_WEIGHT="700";
 		elif [ "$IS_MEDIUM" = "T" ]
 		then
 			FONT_WEIGHT="500";
-		elif [ "$IS_DEMI_BOLD" = "T" ]
+		elif [ "$IS_DEMI_BOLD" = "T" ] | [ "$IS_DEMIBOLD" = "T" ] | [ "$IS_SEMIBOLD" = "T" ] | [ "$IS_SEMI_BOLD" = "T" ] | [ "$IS_DEMI" = "T" ]
 		then
-			FONT_WEIGHT="600";
-		elif [ "$IS_EXTRA_BOLD" = "T" ]
+			FONT_WEIGHT="600";		
+		elif [ "$IS_EXTRABOLD" = "T" ] | [ "$IS_EXTRA_BOLD" = "T" ] | [ "$IS_ULTRABOLD" = "T" ] | [ "$IS_ULTRA_BOLD" = "T" ]
 		then
 			FONT_WEIGHT="800";
-		
-		elif [ "$IS_BLACK" = "T" ]
+		elif [ "$IS_EXTRA_BLACK" = "T" ] | [ "$IS_ULTRA_BLACK" = "T" ] | [ "$IS_EXTRABLACK" = "T" ] | [ "$IS_ULTRABLACK" = "T" ]
+		then
+			FONT_WEIGHT="950"
+		elif [ "$IS_BLACK" = "T" ] | [ "$IS_HEAVY" = "T" ]
 		then
 			FONT_WEIGHT="900"
+		elif [ "$IS_BOLD" = "T" ]
+		then
+			FONT_WEIGHT="700";
 		else
 			FONT_WEIGHT="400";
 		fi
