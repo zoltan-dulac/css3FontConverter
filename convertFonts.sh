@@ -819,6 +819,7 @@ do
 			s/[bB][lL][aA][cC][kK]//g;
 			s/[eE][xX][tT][rR][aA]//g;
 			s/[dD][eE][mM][iI]//g;
+			s/[sS][eE][mM][iI]//g;
 			s/[rR][oO][mM][aA][nN]//g;
 			s/[tT][hH][iI][nN]//g;"
 		
