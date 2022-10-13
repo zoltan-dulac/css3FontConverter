@@ -755,10 +755,10 @@ do
 		#.. set variables that will be used in the @font-face declaration
 		#   These values were grabbed from the article at
 		#   http://destination-code.blogspot.ca/2009/01/font-weight-number-keywords-100-900.html
-		if [ "$IS_THIN" = "T" ] | [ "$IS_HAIRLINE" = "T" ]
+		if [ "$IS_THIN" = "T" ] || [ "$IS_HAIRLINE" = "T" ]
 		then
 			FONT_WEIGHT="100";
-		elif [ "$IS_EXTRA_LIGHT" = "T" ] | [ "$IS_EXTRALIGHT" = "T" ] | [ "$IS_ULTRALIGHT" = "T" ] | [ "$IS_ULTRA_LIGHT" = "T" ]
+		elif [ "$IS_EXTRA_LIGHT" = "T" ] || [ "$IS_EXTRALIGHT" = "T" ] || [ "$IS_ULTRALIGHT" = "T" ] || [ "$IS_ULTRA_LIGHT" = "T" ]
 		then
 			FONT_WEIGHT="200";
 		elif [ "$IS_LIGHT" = "T" ]
@@ -767,18 +767,18 @@ do
 		elif [ "$IS_MEDIUM" = "T" ]
 		then
 			FONT_WEIGHT="500";
-		elif [ "$IS_DEMI_BOLD" = "T" ] | [ "$IS_DEMIBOLD" = "T" ] | [ "$IS_SEMIBOLD" = "T" ] | [ "$IS_SEMI_BOLD" = "T" ] | [ "$IS_DEMI" = "T" ]
+		elif [ "$IS_DEMI_BOLD" = "T" ] || [ "$IS_DEMIBOLD" = "T" ] || [ "$IS_SEMIBOLD" = "T" ] || [ "$IS_SEMI_BOLD" = "T" ] || [ "$IS_DEMI" = "T" ]
 		then
 			FONT_WEIGHT="600";		
-		elif [ "$IS_EXTRABOLD" = "T" ] | [ "$IS_EXTRA_BOLD" = "T" ] | [ "$IS_ULTRABOLD" = "T" ] | [ "$IS_ULTRA_BOLD" = "T" ]
+		elif [ "$IS_EXTRABOLD" = "T" ] || [ "$IS_EXTRA_BOLD" = "T" ] || [ "$IS_ULTRABOLD" = "T" ] || [ "$IS_ULTRA_BOLD" = "T" ]
 		then
 			FONT_WEIGHT="800";
-		elif [ "$IS_EXTRA_BLACK" = "T" ] | [ "$IS_ULTRA_BLACK" = "T" ] | [ "$IS_EXTRABLACK" = "T" ] | [ "$IS_ULTRABLACK" = "T" ]
+		elif [ "$IS_EXTRA_BLACK" = "T" ] || [ "$IS_ULTRA_BLACK" = "T" ] || [ "$IS_EXTRABLACK" = "T" ] || [ "$IS_ULTRABLACK" = "T" ]
 		then
-			FONT_WEIGHT="950"
-		elif [ "$IS_BLACK" = "T" ] | [ "$IS_HEAVY" = "T" ]
+			FONT_WEIGHT="950";
+		elif [ "$IS_BLACK" = "T" ] || [ "$IS_HEAVY" = "T" ]
 		then
-			FONT_WEIGHT="900"
+			FONT_WEIGHT="900";
 		elif [ "$IS_BOLD" = "T" ]
 		then
 			FONT_WEIGHT="700";
@@ -805,8 +805,7 @@ do
 			  FONT_STRETCH="normal";
 			fi
 		fi
-		
-		
+			
 		#.. the name we will refer to in CSS will be without the words "Bold", "Italic", etc.
 		#   NOTE: I Wanted to use sed with the 'gi' options, but OSX's sed (BSD
 		#	I assume) doesn't do the 'i' case insensitive switch. Boo!
